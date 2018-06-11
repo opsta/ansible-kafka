@@ -1,0 +1,8 @@
+---
+- include_tasks: kafka_pre.yml
+- include_tasks: kafka_install.yml
+
+- block: # Config Kafka
+  - include_tasks: kafka_post.yml
+  tags:
+    - kafka-config

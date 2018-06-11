@@ -1,0 +1,11 @@
+---
+- name: Add Kafka Group
+  group:
+    name: "{{ kafka_group }}"
+
+- name: Add Kafka User
+  user:
+    name: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    shell: /bin/bash
+    home: "{{ kafka_install_dir }}"

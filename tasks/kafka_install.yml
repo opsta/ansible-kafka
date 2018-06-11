@@ -1,0 +1,15 @@
+---
+- name: Download Kafka and extract files
+  unarchive:
+    src: "{{ kafka_download_url }}"
+    dest: "{{ kafka_install_dir }}"
+    remote_src: yes
+    extra_opts: --strip-components=1
+    creates: "{{ kafka_install_dir }}/bin"
+
+- name: Change file permission of Kafka installation directory
+  file:
+    dest: "{{ kafka_install_dir }}"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    recurse: yes

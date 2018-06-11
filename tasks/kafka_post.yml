@@ -1,0 +1,22 @@
+---
+- name: Create Kafka Systemd Unit file
+  template:
+    src: kafka.service.j2
+    dest: /lib/systemd/system/kafka.service
+    mode: 0644
+  register: kafka_systemd
+
+- name: Ensure Kafka started and enabled
+  systemd:
+    name: kafka
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- name: Configure Kafka
+  lineinfile:
+    dest: "{{ kafka_config_file_path }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items: "{{ kafka_config_vars }}"
+  notify: Restart Kafka
