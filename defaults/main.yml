@@ -6,9 +6,10 @@ kafka_config_file_path: /opt/kafka/config/server.properties
 kafka_user: kafka
 kafka_group: kafka
 
-kafka_all_in_one: false
+kafka_with_zookeeper: false
+kafka_standalone: true
 
-kafka_advertised_listeners: "{{ (kafka_all_in_one) | ternary('PLAINTEXT://localhost:9092', 'PLAINTEXT://0.0.0.0:9092') }}"
+kafka_advertised_listeners: "{{ (kafka_standalone) | ternary('PLAINTEXT://localhost:9092', 'PLAINTEXT://0.0.0.0:9092') }}"
 
 # DON'T CHANGE THIS EXCEPT YOU KNOW WHAT YOU DO
 kafka_config_vars:
