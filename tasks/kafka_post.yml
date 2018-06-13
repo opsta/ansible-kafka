@@ -17,11 +17,4 @@
   template:
     src: server.properties.j2
     dest: "{{ kafka_config_file_path }}"
-
-- name: Configure Kafka
-  lineinfile:
-    dest: "{{ kafka_config_file_path }}"
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
-  with_items: "{{ kafka_config_vars }}"
   notify: Restart Kafka

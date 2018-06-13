@@ -9,4 +9,3 @@
     group: "{{ kafka_group }}"
     shell: /bin/bash
     home: "{{ kafka_install_dir }}"
-
