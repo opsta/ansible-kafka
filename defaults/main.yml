@@ -7,7 +7,6 @@ kafka_config_file_path: /opt/kafka/config/server.properties
 kafka_user: kafka
 kafka_group: kafka
 
-use_zookeeper_role: false
 kafka_with_zookeeper: false
 
 zookeeper_standalone: "{{ (ansible_play_hosts | length | int > 1) | ternary(false, true) }}"
