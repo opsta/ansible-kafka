@@ -1,0 +1,14 @@
+---
+- name: Create Zookeeper data directory
+  file:
+    path: "{{ zookeeper_data_dir }}"
+    state: directory
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+
+- name: Create Zookeeper log directory
+  file:
+    path: "{{ zookeeper_log_dir }}"
+    state: directory
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"

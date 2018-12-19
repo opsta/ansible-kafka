@@ -1,0 +1,17 @@
+[Unit]
+Description=Apache Zookeeper server
+Documentation=https://zookeeper.apache.org/documentation.html
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+ConditionPathExists={{ kafka_install_dir }}
+
+[Service]
+Type=simple
+PIDFile=/var/run/zookeeper.pid
+User={{ kafka_user }}
+Group={{ kafka_group }}
+ExecStart={{ kafka_install_dir }}/bin/zookeeper-server-start.sh {{ zookeeper_config_file_path }}
+ExecStop={{ kafka_install_dir }}/bin/zookeeper-server-stop.sh
+
+[Install]
+WantedBy=multi-user.target
