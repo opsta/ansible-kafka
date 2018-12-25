@@ -2,12 +2,12 @@
 kafka_group_name: kafka
 kafka_download_url: http://www-us.apache.org/dist/kafka/2.1.0/kafka_2.12-2.1.0.tgz
 kafka_install_dir: /opt/kafka
-kafka_log_dir: /var/lib/kafka
+kafka_data_dir: /var/lib/kafka
 kafka_config_file_path: /opt/kafka/config/server.properties
 kafka_user: kafka
 kafka_group: kafka
 
-kafka_zookeeper_embedded: true
+kafka_zookeeper_embedded: true # TODO: when false, it should handle external zookeeper hosts
 kafka_zookeeper_standalone: "{{ (ansible_play_hosts | length | int > 1) | ternary(false, true) }}"
 kafka_zookeeper_data_dir: /var/lib/zookeeper
 kafka_zookeeper_log_dir: /var/log/zookeeper
