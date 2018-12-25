@@ -13,7 +13,7 @@
     enabled: yes
     daemon_reload: yes
 
-- name: Drop server configuartion file
+- name: Drop Kafka configuration file
   template:
     src: server.properties.j2
     dest: "{{ kafka_config_file_path }}"

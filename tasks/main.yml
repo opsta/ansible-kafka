@@ -1,6 +1,14 @@
 ---
 - include_tasks: kafka_pre.yml
+- include_tasks: zookeeper_pre.yml
+  when: kafka_zookeeper_embedded == true
 - include_tasks: kafka_install.yml
+
+- block: # Config Zookeeper
+  - include_tasks: zookeeper_post.yml
+    when: kafka_zookeeper_embedded == true
+  tags:
+    - zookeeper-config
 
 - block: # Config Kafka
   - include_tasks: kafka_post.yml

@@ -9,3 +9,10 @@
     group: "{{ kafka_group }}"
     shell: /bin/bash
     home: "{{ kafka_install_dir }}"
+
+- name: Create Kafka data directory
+  file:
+    path: "{{ kafka_data_dir }}"
+    state: directory
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"

@@ -1,0 +1,24 @@
+---
+- name: Create Zookeeper Systemd Unit file
+  template:
+    src: zookeeper.service.j2
+    dest: /lib/systemd/system/zookeeper.service
+    mode: 0644
+  register: zookeeper_systemd
+
+- name: Drop Zookeeper configuration file
+  template:
+    src: zookeeper.properties.j2
+    dest: "{{ kafka_zookeeper_config_file_path }}"
+
+- name: Drop myid file
+  template:
+    src: myid.j2
+    dest: "{{ kafka_zookeeper_myid_file_path }}"
+
+- name: Ensure Zookeeper started and enabled
+  systemd:
+    name: zookeeper
+    state: started
+    enabled: yes
+    daemon_reload: yes
