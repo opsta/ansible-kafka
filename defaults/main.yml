@@ -7,13 +7,12 @@ kafka_config_file_path: /opt/kafka/config/server.properties
 kafka_user: kafka
 kafka_group: kafka
 
-kafka_with_zookeeper: false
-
-zookeeper_standalone: "{{ (ansible_play_hosts | length | int > 1) | ternary(false, true) }}"
-zookeeper_data_dir: /var/lib/zookeeper
-zookeeper_log_dir: /var/log/zookeeper
-zookeeper_config_file_path: /opt/kafka/config/zookeeper.properties
-zookeeper_myid_file_path: /var/lib/zookeeper/myid
-zookeeper_client_port: 2181
-zookeeper_follower_port: 2888
-zookeeper_leader_port: 3888
+kafka_zookeeper_embedded: true
+kafka_zookeeper_standalone: "{{ (ansible_play_hosts | length | int > 1) | ternary(false, true) }}"
+kafka_zookeeper_data_dir: /var/lib/zookeeper
+kafka_zookeeper_log_dir: /var/log/zookeeper
+kafka_zookeeper_config_file_path: /opt/kafka/config/zookeeper.properties
+kafka_zookeeper_myid_file_path: /var/lib/zookeeper/myid
+kafka_zookeeper_client_port: 2181
+kafka_zookeeper_follower_port: 2888
+kafka_zookeeper_leader_port: 3888

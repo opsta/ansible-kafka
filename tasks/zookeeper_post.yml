@@ -9,12 +9,12 @@
 - name: Drop Zookeeper configuration file
   template:
     src: zookeeper.properties.j2
-    dest: "{{ zookeeper_config_file_path }}"
+    dest: "{{ kafka_zookeeper_config_file_path }}"
 
 - name: Drop myid file
   template:
     src: myid.j2
-    dest: "{{ zookeeper_myid_file_path }}"
+    dest: "{{ kafka_zookeeper_myid_file_path }}"
 
 - name: Ensure Zookeeper started and enabled
   systemd:

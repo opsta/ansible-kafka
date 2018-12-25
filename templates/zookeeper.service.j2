@@ -10,7 +10,7 @@ Type=simple
 PIDFile=/var/run/zookeeper.pid
 User={{ kafka_user }}
 Group={{ kafka_group }}
-ExecStart={{ kafka_install_dir }}/bin/zookeeper-server-start.sh {{ zookeeper_config_file_path }}
+ExecStart={{ kafka_install_dir }}/bin/zookeeper-server-start.sh {{ kafka_zookeeper_config_file_path }}
 ExecStop={{ kafka_install_dir }}/bin/zookeeper-server-stop.sh
 
 [Install]

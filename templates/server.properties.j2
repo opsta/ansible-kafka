@@ -18,7 +18,7 @@
 ############################# Server Basics #############################
 
 # The id of the broker. This must be set to a unique integer for each broker.
-{% if zookeeper_standalone is defined and not zookeeper_standalone %}
+{% if kafka_zookeeper_standalone is defined and not kafka_zookeeper_standalone %}
 {% for host in ansible_play_hosts %}
 {%   if inventory_hostname == host %}
 broker.id={{ loop.index }}
@@ -130,7 +130,7 @@ log.retention.check.interval.ms=300000
 # server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002".
 # You can also append an optional chroot string to the urls to specify the
 # root directory for all kafka znodes.
-{% if zookeeper_standalone is defined and not zookeeper_standalone %}
+{% if kafka_zookeeper_standalone is defined and not kafka_zookeeper_standalone %}
 zookeeper.connect={% for host in ansible_play_hosts %}{{ hostvars[host].ansible_default_ipv4.address }}:2181{%- if not loop.last %},{% endif %}{% endfor %}
 {% else %}
 zookeeper.connect=localhost:2181
